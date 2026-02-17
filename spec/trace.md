@@ -1,4 +1,4 @@
-# SOP Spec: Execution Trace
+# STOP Spec: Execution Trace
 
 > Version: 0.1.0-draft
 

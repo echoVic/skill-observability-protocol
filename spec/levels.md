@@ -1,10 +1,10 @@
-# SOP Spec: Observability Levels
+# STOP Spec: Observability Levels
 
 > Version: 0.1.0-draft
 
 ## Overview
 
-SOP defines four observability levels (L0–L3) for progressive adoption. A skill author picks the level that matches their needs — start simple, add more as the skill matures.
+STOP defines four observability levels (L0–L3) for progressive adoption. A skill author picks the level that matches their needs — start simple, add more as the skill matures.
 
 The key principle: **L0 costs nothing but a YAML file. Each level adds value proportional to its effort.**
 
@@ -30,7 +30,7 @@ At L0, the manifest is purely declarative. No runtime behavior changes. But it a
 
 ### L1 — Trace
 
-**Effort:** Runtime emits spans automatically (no skill author work if runtime supports SOP).
+**Effort:** Runtime emits spans automatically (no skill author work if runtime supports STOP).
 **You get:** Execution timeline, tool call visibility, duration tracking.
 
 Everything in L0, plus:
@@ -40,7 +40,7 @@ Everything in L0, plus:
 - **Error localization** — pinpoint which span failed
 - **Tool call audit** — verify the skill only used declared tools
 
-L1 is typically implemented by the runtime, not the skill author. If your runtime supports SOP, you get L1 for free by declaring `observability.level: L1` in the manifest.
+L1 is typically implemented by the runtime, not the skill author. If your runtime supports STOP, you get L1 for free by declaring `observability.level: L1` in the manifest.
 
 ### L2 — Assertions
 

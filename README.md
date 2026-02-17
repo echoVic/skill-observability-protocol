@@ -1,8 +1,8 @@
-# Skill Observability Protocol (SOP)
+# Skill Transparency & Observability Protocol (STOP)
 
-> Making Agent Skills transparent, debuggable, and trustworthy.
+> Stop. Look inside. Understand what your skills actually do.
 >
-> 让 Agent Skill 变得透明、可调试、可信赖。
+> 停下来，看清楚——你的 Skill 到底做了什么。
 
 [English](#english) | [中文](#中文)
 
@@ -12,7 +12,7 @@
 
 ## What is this?
 
-SOP is an open specification for Agent Skill observability. It defines how skills declare their capabilities, emit execution traces, and verify outcomes — so developers and users can understand what a skill did, why it did it, and whether it succeeded.
+STOP is an open specification for Agent Skill observability. It defines how skills declare their capabilities, emit execution traces, and verify outcomes — so developers and users can understand what a skill did, why it did it, and whether it succeeded.
 
 ## Why?
 
@@ -23,7 +23,7 @@ Agent Skills today are black boxes. You invoke one, something happens (or doesn'
 - **Composition is fragile** — chaining skills without observability is like piping commands with no stderr
 - **Security review is manual** — no standard way to audit what a skill actually does
 
-SOP fixes this by bringing SRE-grade observability (Logs, Metrics, Traces) to the skill layer.
+STOP fixes this by bringing SRE-grade observability (Logs, Metrics, Traces) to the skill layer.
 
 ## Spec Documents
 
@@ -90,7 +90,7 @@ assertions:
 
 ## Observability Levels
 
-SOP is designed for progressive adoption:
+STOP is designed for progressive adoption:
 
 | Level | Name | What You Get |
 |-------|------|-------------|
@@ -119,7 +119,7 @@ CC-BY-4.0
 
 ## 这是什么？
 
-SOP 是一个面向 Agent Skill 可观测性的开放规范。它定义了 Skill 如何声明自身能力、输出执行追踪、验证执行结果——让开发者和用户能够理解一个 Skill 做了什么、为什么这么做、以及是否成功。
+STOP 是一个面向 Agent Skill 可观测性的开放规范。它定义了 Skill 如何声明自身能力、输出执行追踪、验证执行结果——让开发者和用户能够理解一个 Skill 做了什么、为什么这么做、以及是否成功。
 
 ## 为什么需要它？
 
@@ -130,7 +130,7 @@ SOP 是一个面向 Agent Skill 可观测性的开放规范。它定义了 Skill
 - **组合很脆弱** — 在没有可观测性的情况下串联 Skill，就像管道命令没有 stderr
 - **安全审计靠人工** — 没有标准方式审计一个 Skill 实际做了什么
 
-SOP 将 SRE 级别的可观测性三支柱（日志、指标、追踪）引入 Skill 层来解决这些问题。
+STOP 将 SRE 级别的可观测性三支柱（日志、指标、追踪）引入 Skill 层来解决这些问题。
 
 ## 规范文档
 
@@ -197,7 +197,7 @@ assertions:
 
 ## 可观测性等级
 
-SOP 支持渐进式采纳：
+STOP 支持渐进式采纳：
 
 | 等级 | 名称 | 你能获得什么 |
 |------|------|-------------|

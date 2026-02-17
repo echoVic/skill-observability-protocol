@@ -1,4 +1,4 @@
-# SOP Spec: Assertions
+# STOP Spec: Assertions
 
 > Version: 0.1.0-draft
 

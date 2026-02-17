@@ -1,4 +1,4 @@
-# SOP Spec: Skill Manifest (`skill.yaml`)
+# STOP Spec: Skill Manifest (`skill.yaml`)
 
 > Version: 0.1.0-draft
 
@@ -13,7 +13,7 @@ Think of it as `package.json` for skills — but focused on observability and tr
 ```
 my-skill/
 ├── SKILL.md          # Human-readable instructions (existing convention)
-├── skill.yaml        # Machine-readable manifest (SOP)
+├── skill.yaml        # Machine-readable manifest (STOP)
 └── ...
 ```
 
@@ -23,7 +23,7 @@ my-skill/
 
 ```yaml
 # Required
-sop: "0.1"                    # SOP spec version
+sop: "0.1"                    # STOP spec version
 name: string                  # Unique skill identifier (kebab-case)
 version: string               # Semver version
 description: string           # One-line description
@@ -235,6 +235,6 @@ Runtimes SHOULD validate manifests at skill load time and emit warnings for inva
 | Audience | Agent (LLM) | Runtime (machine) |
 | Format | Free-form markdown | Structured YAML |
 | Purpose | How to use the skill | What the skill does |
-| Required by SOP | No | Yes (L0+) |
+| Required by STOP | No | Yes (L0+) |
 
 Both files SHOULD be kept in sync. A linter can verify consistency between them.
