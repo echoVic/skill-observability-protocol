@@ -39,38 +39,53 @@ SOP fixes this by bringing SRE-grade observability (Logs, Metrics, Traces) to th
 ```yaml
 # skill.yaml (Manifest)
 sop: "0.1"
-name: juejin-publish
+name: github-issue-creator
 version: 1.0.0
-description: Publish articles to Juejin tech community
+description: Create GitHub issues from bug reports or feature requests
 
 inputs:
-  - name: article_path
-    type: file_path
+  - name: repo
+    type: string
     required: true
-    description: Path to the markdown article file
+    description: GitHub repository (owner/repo)
+  - name: title
+    type: string
+    required: true
+    description: Issue title
+  - name: body
+    type: string
+    required: false
+    description: Issue body (markdown)
 
 outputs:
-  - name: article_url
+  - name: issue_url
     type: url
-    description: Published article URL
+    description: Created issue URL
+  - name: issue_number
+    type: number
+    description: Issue number
 
 tools_used:
-  - web_fetch
   - exec
 
 side_effects:
   - type: network
-    description: POST to juejin.cn API
-  - type: filesystem
-    access: read
-    paths: ["${inputs.article_path}"]
+    description: POST to GitHub API
+    destinations: ["api.github.com"]
+
+requirements:
+  env_vars: [GITHUB_TOKEN]
 
 assertions:
+  pre:
+    - check: env_var
+      name: GITHUB_TOKEN
+      message: "GitHub token required"
   post:
-    - check: output.article_url
-      matches: "^https://juejin\\.cn/post/\\d+$"
-    - check: http_status
-      equals: 200
+    - check: output.issue_url
+      matches: "^https://github\\.com/.+/issues/\\d+$"
+    - check: output.issue_number
+      greater_than: 0
 ```
 
 ## Observability Levels
@@ -131,38 +146,53 @@ SOP 将 SRE 级别的可观测性三支柱（日志、指标、追踪）引入 S
 ```yaml
 # skill.yaml（清单）
 sop: "0.1"
-name: juejin-publish
+name: github-issue-creator
 version: 1.0.0
-description: 发布文章到掘金技术社区
+description: 从 Bug 报告或功能请求创建 GitHub Issue
 
 inputs:
-  - name: article_path
-    type: file_path
+  - name: repo
+    type: string
     required: true
-    description: Markdown 文章文件路径
+    description: GitHub 仓库（owner/repo 格式）
+  - name: title
+    type: string
+    required: true
+    description: Issue 标题
+  - name: body
+    type: string
+    required: false
+    description: Issue 正文（markdown）
 
 outputs:
-  - name: article_url
+  - name: issue_url
     type: url
-    description: 已发布的文章链接
+    description: 创建的 Issue 链接
+  - name: issue_number
+    type: number
+    description: Issue 编号
 
 tools_used:
-  - web_fetch
   - exec
 
 side_effects:
   - type: network
-    description: POST 请求到 juejin.cn API
-  - type: filesystem
-    access: read
-    paths: ["${inputs.article_path}"]
+    description: POST 请求到 GitHub API
+    destinations: ["api.github.com"]
+
+requirements:
+  env_vars: [GITHUB_TOKEN]
 
 assertions:
+  pre:
+    - check: env_var
+      name: GITHUB_TOKEN
+      message: "需要 GitHub Token"
   post:
-    - check: output.article_url
-      matches: "^https://juejin\\.cn/post/\\d+$"
-    - check: http_status
-      equals: 200
+    - check: output.issue_url
+      matches: "^https://github\\.com/.+/issues/\\d+$"
+    - check: output.issue_number
+      greater_than: 0
 ```
 
 ## 可观测性等级
