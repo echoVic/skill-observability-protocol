@@ -10,6 +10,7 @@
     "build": "tsc",
     "dev": "tsc --watch"
   },
+  "files": ["bin/", "dist/", "README.md"],
   "keywords": ["agent", "skill", "observability", "stop-protocol"],
   "license": "MIT",
   "author": "echoVic",
