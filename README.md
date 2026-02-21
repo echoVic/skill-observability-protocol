@@ -101,6 +101,61 @@ STOP is designed for progressive adoption:
 
 Start at L0 (just a manifest file), adopt more as needed.
 
+## Packages
+
+STOP ships three npm packages for immediate use:
+
+| Package | Description | Install |
+|---------|-------------|---------|
+| [`stop-cli`](https://www.npmjs.com/package/stop-cli) | CLI tool — `stop init` / `stop validate` | `npm i -g stop-cli` |
+| [`stop-runtime`](https://www.npmjs.com/package/stop-runtime) | Runtime SDK — manifest loader, assertion runner, trace emitter | `npm i stop-runtime` |
+| [`stop-mcp`](https://www.npmjs.com/package/stop-mcp) | MCP Server — works with Claude Code, opencode, Cursor, etc. | `npm i -g stop-mcp` |
+
+### CLI Quick Start
+
+```bash
+# Generate a skill.yaml interactively
+npx stop-cli init
+
+# Validate a skill.yaml
+npx stop-cli validate
+```
+
+### Runtime SDK
+
+```typescript
+import { loadManifest, runAssertions, createTracer } from 'stop-runtime';
+
+const manifest = loadManifest('./skill.yaml');
+
+// Pre-checks
+const pre = runAssertions(manifest.assertions.pre, { env: process.env }, 'pre');
+
+// Trace execution
+const tracer = createTracer(manifest);
+const span = tracer.startSpan('tool.call', 'exec: my-command');
+tracer.endSpan(span, 'ok');
+tracer.finish('ok');
+tracer.writeTo(); // → .sop/traces/
+```
+
+### MCP Integration
+
+Add to your MCP config (`claude_desktop_config.json`, `.mcp.json`, etc.):
+
+```json
+{
+  "mcpServers": {
+    "stop": {
+      "command": "npx",
+      "args": ["stop-mcp"]
+    }
+  }
+}
+```
+
+Provides 5 tools: `stop_validate`, `stop_check`, `stop_manifest`, `stop_trace_list`, `stop_trace_view`.
+
 ## Status
 
 🚧 **Draft** — This is an early-stage specification. Everything is subject to change.
@@ -207,6 +262,61 @@ STOP 支持渐进式采纳：
 | L3 | 完整 | 指标、成本追踪、异常基线 |
 
 从 L0 开始（只需一个清单文件），按需逐步采纳。
+
+## 工具包
+
+STOP 提供三个 npm 包，开箱即用：
+
+| 包名 | 说明 | 安装 |
+|------|------|------|
+| [`stop-cli`](https://www.npmjs.com/package/stop-cli) | CLI 工具 — `stop init` / `stop validate` | `npm i -g stop-cli` |
+| [`stop-runtime`](https://www.npmjs.com/package/stop-runtime) | Runtime SDK — manifest 解析、断言验证、执行追踪 | `npm i stop-runtime` |
+| [`stop-mcp`](https://www.npmjs.com/package/stop-mcp) | MCP Server — 适配 Claude Code、opencode、Cursor 等 | `npm i -g stop-mcp` |
+
+### CLI 快速开始
+
+```bash
+# 交互式生成 skill.yaml
+npx stop-cli init
+
+# 校验 skill.yaml
+npx stop-cli validate
+```
+
+### Runtime SDK
+
+```typescript
+import { loadManifest, runAssertions, createTracer } from 'stop-runtime';
+
+const manifest = loadManifest('./skill.yaml');
+
+// 前置检查
+const pre = runAssertions(manifest.assertions.pre, { env: process.env }, 'pre');
+
+// 执行追踪
+const tracer = createTracer(manifest);
+const span = tracer.startSpan('tool.call', 'exec: my-command');
+tracer.endSpan(span, 'ok');
+tracer.finish('ok');
+tracer.writeTo(); // → .sop/traces/
+```
+
+### MCP 集成
+
+在 MCP 配置中添加（`claude_desktop_config.json`、`.mcp.json` 等）：
+
+```json
+{
+  "mcpServers": {
+    "stop": {
+      "command": "npx",
+      "args": ["stop-mcp"]
+    }
+  }
+}
+```
+
+提供 5 个工具：`stop_validate`、`stop_check`、`stop_manifest`、`stop_trace_list`、`stop_trace_view`。
 
 ## 状态
 
