@@ -1,0 +1,41 @@
+{
+  "name": "stop-mcp",
+  "version": "0.1.0",
+  "description": "STOP Protocol MCP Server — bring observability to Agent Skills via MCP",
+  "type": "module",
+  "bin": {
+    "stop-mcp": "./bin/stop-mcp.js"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "agent",
+    "skill",
+    "observability",
+    "stop-protocol",
+    "mcp"
+  ],
+  "license": "MIT",
+  "author": "echoVic",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/echoVic/stop-protocol"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "js-yaml": "^4.1.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}
